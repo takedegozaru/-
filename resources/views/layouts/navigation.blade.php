@@ -15,9 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('point.create')" :active="request()->routeIs('point.create')">
-                        {{ __('ポイント') }}
-                    </x-nav-link>
+
                     <x-nav-link :href="route('game_log')" :active="request()->routeIs('game_log')">
                         {{ __('試合一覧') }}
                     </x-nav-link>
