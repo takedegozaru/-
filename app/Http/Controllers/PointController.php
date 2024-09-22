@@ -4,31 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Point;
-class PointController extends Controller
+use App\Models\Set;
+use App\Http\Controllers\GameController;
+use App\Models\Game;
+use App\Models\Reason;
 
+class PointController extends Controller
 {
-    public function create(Request $request, Point $point){
-        // $point = new Point;
-        
-        // デフォルトのセットID
-        $setId = $request->input('set_id', null);
-        
-        // 現在の得点数を取得
-        $pointsCount = $setId ? Point::where('set_id', $setId)->count() : 0;
-        $point_datas=$point->get();
-        
+    public function create(Request $request, Point $point, Game $game, Reason $reason){
         // ビューを返す
         return view('vball.create_point', [
-            'pointsCount' => $pointsCount,
-            'setId' => $setId,
-            'points'=>$point_datas
+            'reasons'=>$reason->get(),
+            'game'=>$game
         ]);
         
         
         
     }
     
-    public function store(Request $request, Point $point)
+    public function store(Request $request, Point $point, Set $set)
     {
         // // バリデーション
         // $request->validate([
@@ -42,29 +36,23 @@ class PointController extends Controller
 
         // dd($request);
         
-        
         // $now_point=$point['point_number'];
        
         
-            $input=$request['point'];
-            $input['school_id']=1;
-            $input['reason_id']=1;
-            $input['set_id']=1;
-            $point->create($input);
+        $input=$request['point'];
+        $input['school_id']=$set->game->school_id;
+        $input['set_id']=$set['id'];
+        $point->create($input);
         
-        // return view('point.create_point')->with(['points'=>$point_datas]);
+        $set->my_points=$set->my_points+1;
+        $set->save();
         
-        return redirect('/point');
+        
+        
+        return redirect("/match/{$set->game->id}/point");
         
         // データを渡して同じ画面にリダイレクト
         // return redirect()->route('point.create', ['set_id' => $request->input('set_id')]);
     }
-        
     
-    
-    public function sort(Request $request){
-        
-    }
-    
-   
 }

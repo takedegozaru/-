@@ -5,27 +5,16 @@ use App\Http\Controllers\PointController;
 use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::post('/games',[GameController::class,'store_game']);
 Route::get('/match',[GameController::class,'game_log'])->name('game_log');
-// Route::get('/match/{game}/{set}/point',[PointController::class, 'create'])->name('point.create');
-Route::get('/point',[PointController::class, 'create'])->name('point.create');
-Route::post('/point',[PointController::class, 'store'])->name('point.store');   
+Route::post('/add_set/{game}',[GameController::class,'add_set']);
+Route::get('/match/{game}/point',[PointController::class, 'create'])->name('point.create');
+Route::post('/match/{set}/point',[PointController::class, 'store'])->name('point.store');   
 
-    
+
 
 
 Route::get('/dashboard', function () {
