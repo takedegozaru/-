@@ -8,6 +8,7 @@ use App\Models\Set;
 use App\Http\Controllers\GameController;
 use App\Models\Game;
 use App\Models\Reason;
+use App\Models\School;
 
 class PointController extends Controller
 {
@@ -22,7 +23,7 @@ class PointController extends Controller
         
     }
     
-    public function store(Request $request, Point $point, Set $set)
+    public function store(Request $request, Point $point, Set $set, School $school)
     {
         // // バリデーション
         // $request->validate([
@@ -40,19 +41,21 @@ class PointController extends Controller
        
         
         $input=$request['point'];
-        $input['school_id']=$set->game->school_id;
+        $input['school_id']=$school->id;
         $input['set_id']=$set['id'];
         $point->create($input);
         
+        
+        if($school->id==1){
         $set->my_points=$set->my_points+1;
         $set->save();
-        
-        
+        }
+        else{
+        $set->op_points=$set->op_points+1;
+        $set->save();    
+        }
         
         return redirect("/match/{$set->game->id}/point");
-        
-        // データを渡して同じ画面にリダイレクト
-        // return redirect()->route('point.create', ['set_id' => $request->input('set_id')]);
     }
     
 }

@@ -16,9 +16,6 @@ class SchoolSeeder extends Seeder
          DB::table('schools')->insert([
         [   
             'name' => '新町中',
-        ],
-        [
-            'name' => '相手校'
         ]
         ]);
     }

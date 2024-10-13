@@ -13,11 +13,6 @@ class SetSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('sets')->insert([
-                'game_id' => 1,
-                'set_number'=>1,
-                'my_points' =>0,
-                'op_points' =>0,
-         ]);
+       
     }
 }

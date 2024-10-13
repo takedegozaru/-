@@ -23,6 +23,15 @@ class ReasonSeeder extends Seeder
             [
                 'name'=>'サービスエース',
             ],
+            [   
+                'name'=>'フェイント',
+            ],
+            [
+                'name'=>'ツーアタック'
+            ],
+            [
+                'name'=>'相手ミス'
+            ]
         ];
         foreach ($reason_datas as $data){
             DB::table('reasons')->insert($data);
