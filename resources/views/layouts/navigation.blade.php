@@ -19,6 +19,11 @@
                     <x-nav-link :href="route('game_log')" :active="request()->routeIs('game_log')">
                         {{ __('試合一覧') }}
                     </x-nav-link>
+                
+                    <x-nav-link :href="route('school_setting')" :active="request()->routeIs('school_setting')">
+                        {{ __('学校設定') }}
+                    </x-nav-link>
+
                 </div>
                 
             </div>

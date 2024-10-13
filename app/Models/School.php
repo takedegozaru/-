@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\School;
+use App\Models\Game;
+use App\Models\Player;
+
 
 class School extends Model
 {
@@ -17,5 +19,8 @@ class School extends Model
     public function games()
     {
         return $this->hasmany(Game::class);
+    }
+    public function players(){
+        return $this->hasmany(Player::class);
     }
 }

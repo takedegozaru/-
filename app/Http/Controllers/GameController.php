@@ -7,6 +7,7 @@ use App\Models\Game;
 use App\Models\Set;
 use App\Models\Point;
 use App\Models\School;
+use App\Models\Player;
 
 class GameController extends Controller
 {
@@ -38,16 +39,17 @@ class GameController extends Controller
     
     public function add_set(Request $request, Game $game, Set $set, Point $point)
     {
-        
+        //＝の時のバリデーションを作成する
         $max_set_number = $game->sets()->max('set_number');
         
         $max_set = $game->sets()->where('set_number', $max_set_number)->first();
         
-        if($max_set['op_point'] >= $max_set['my_point']) {
+        if($max_set['op_points'] >= $max_set['my_points']) {
             $game['op_score']=$game['op_score']+1;
         } else{
             $game['my_score']=$game['my_score']+1;
         }
+        $game->save();
         
         
         $set_input['game_id']=$game['id'];
@@ -58,4 +60,6 @@ class GameController extends Controller
         $id=$game['id'];
         return redirect("/match/{$id}/point");
     }
+    
 }
+    
