@@ -13,10 +13,6 @@ class SchoolSeeder extends Seeder
      */
     public function run(): void
     {
-         DB::table('schools')->insert([
-        [   
-            'name' => '新町中',
-        ]
-        ]);
+        
     }
 }

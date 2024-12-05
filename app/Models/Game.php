@@ -28,10 +28,11 @@ class Game extends Model
         return $this->belongsTo(School::class);
     }
     public function user(){
-          return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
      }
      public function sets(){
-          return $this->hasMany(Set::class);
+        return $this->hasMany(Set::class);
      }
+     
      
 }

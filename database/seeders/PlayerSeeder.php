@@ -13,11 +13,6 @@ class PlayerSeeder extends Seeder
      */
     public function run(): void
     {
-         DB::table('players')->insert([
-                'name' => 'A君',
-                'school_id' => 1,
-                'number' => 1,
-         ]);
-    }
+    }        
 }
 

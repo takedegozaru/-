@@ -9,10 +9,13 @@
         </form>
         <div>
             <h2>チーム一覧</h2>
+            @if(isset($schools)==true)
             @foreach($schools as $s )
                 <a href='school/{{$s->id}}/member'>
-                <option value={{ $s->id }}>{{ $s->name }}</option>
+                <p value={{ $s->id }}>{{ $s->name }}</p>
+                </a>
             @endforeach
+            @endif
         </div>
     </div>
 </x-app-layout>
