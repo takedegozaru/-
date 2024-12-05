@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\School;
 
 class RegisteredUserController extends Controller
 {
@@ -41,6 +42,15 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+        
+        $school = School::create([
+            'name' => $user['name'],
+            'user_id' => $user->id 
+            ]);
+            
+        
+        $user->school_id = $school->id;
+        
 
         event(new Registered($user));
 

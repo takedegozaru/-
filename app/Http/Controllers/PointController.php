@@ -39,14 +39,15 @@ class PointController extends Controller
         
         // $now_point=$point['point_number'];
        
-        
+        $value=$request->input('value');
         $input=$request['point'];
         $input['school_id']=$school->id;
         $input['set_id']=$set['id'];
         $point->create($input);
         
+        dd($input);
         
-        if($school->id==1){
+        if($value=='myteam'){
         $set->my_points=$set->my_points+1;
         $set->save();
         }

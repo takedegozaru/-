@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Game;
 use App\Models\Set;
 use App\Models\Point;
 use App\Models\School;
 use App\Models\Player;
+use App\Models\User;
 
 class GameController extends Controller
 {
     public function game_log(Game $game, School $school)
     {
-        return view('vball.game_log')->with(['games'=>$game->get(), 'schools'=>$school->get()]);
+        $user_id=Auth::id();
+        
+        return view('vball.game_log')->with([
+            'games'=>$games = Game::where('user_id',$user_id)->get(),
+            'schools'=>$school->get()
+            ]);
     }
 
     public function store_game(Request $request, Game $game, Set $set, Point $point)

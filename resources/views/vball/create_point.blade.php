@@ -26,7 +26,7 @@
                     @endforeach
                 </select>
                 
-                <input formaction='/match/{{ $set->id }}/point/{{ $set->game->user_id }}' type='submit'></input>
+                <input formaction='/match/{{ $set->id }}/point/{{ $set->game->user_id }}' type='submit' value='my_team'></input>
             </form>
         </div>
         
@@ -50,7 +50,7 @@
                     @endforeach
                 </select>
                 
-                <input formaction='/match/{{ $set->id }}/point/{{ $set->game->school_id }}' type='submit'></input>
+                <input formaction='/match/{{ $set->id }}/point/{{ $set->game->school_id }}' type='submit' value='op_team'></input>
             </form>
         </div>
     </div>

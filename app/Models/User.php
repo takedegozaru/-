@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\School;
+use App\Models\Game;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'school_id',
     ];
 
     /**
@@ -42,4 +45,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+    
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+    public function schools()
+    {
+        return $this->hasMany(School::class);
+    }
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
 }

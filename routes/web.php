@@ -12,12 +12,15 @@ Route::get('/', function () {
 Route::post('/games',[GameController::class,'store_game']);
 Route::get('/match',[GameController::class,'game_log'])->name('game_log');
 Route::post('/add_set/{game}',[GameController::class,'add_set']);
+
 Route::get('/match/{game}/point',[PointController::class, 'create'])->name('point.create');
 Route::post('/match/{set}/point/{school}',[PointController::class, 'store'])->name('point.store');
+
 Route::get('/school', [SchoolController::class, 'create_school'])->name('school_setting');
 Route::get('/school/{school}/member', [SchoolController::class, 'member']);
 Route::post('/member', [SchoolController::class, 'school_setting']);
 Route::post('/member_name/{player}',[SchoolController::class,'member_name']);
+Route::post('member_create/{school}',[SchoolController::class,"member_create"]);
 
 
 

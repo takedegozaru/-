@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Reason extends Model
 {
     use HasFactory;
+    public $timestamp = false;
+    protected $fillable = [
+        'name',
+        'point_id'
+        ];
+    
+    public function reasons(){
+        return $this->hasMany(Reason::class);
+     }    
 }
